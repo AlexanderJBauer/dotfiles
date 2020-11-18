@@ -21,6 +21,7 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+
 " Set editor columns at common styling max line
 set colorcolumn=80,120
 highlight ColorColumn ctermbg=0 guibg=lightgrey
