@@ -10,4 +10,5 @@ ln -sfn ${BASEDIR}/vim ~/.vim
 
 # git
 git config --global diff.tool vimdiff
+git config --global merge.tool vimdiff
 git config --global difftool.prompt false
