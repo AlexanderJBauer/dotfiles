@@ -3,6 +3,8 @@
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # vim
+rm ~/.vimrc
+rm -rf ~/.vim
 ln -sfn ${BASEDIR}/vimrc ~/.vimrc
 ln -sfn ${BASEDIR}/vim ~/.vim
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
