@@ -7,6 +7,10 @@ rm ~/.vimrc
 rm -rf ~/.vim
 ln -sfn ${BASEDIR}/vimrc ~/.vimrc
 ln -sfn ${BASEDIR}/vim ~/.vim
+# ln -sfn ${BASEDIR}/ignore ~/.ignore
+# ln -sfn ${BASEDIR}/bashrc ~/.bashrc
+printf "\n" >> ~/.bashrc
+cat bashrc >> ~/.bashrc
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
   # https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
