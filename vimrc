@@ -48,6 +48,9 @@ set signcolumn=yes
 set colorcolumn=80,120
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
+" Make mouse behave `normally`
+set mouse=a
+
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
@@ -118,18 +121,21 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " shortcuts
 nnoremap <SPACE> <Nop>
+nnoremap t <Nop>
 let mapleader = " "
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>L gt<CR>
-nnoremap <leader>H gT<CR>
+nnoremap H :wincmd h<CR>
+nnoremap J :wincmd j<CR>
+nnoremap K :wincmd k<CR>
+nnoremap L :wincmd l<CR>
+nnoremap <C-l> gt<CR>
+nnoremap <C-h> gT<CR>
+nnoremap <Tab> gT<CR>
+nnoremap T gT<CR>
+nnoremap t gt<CR>
 nnoremap <leader>t :tabe<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 80<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>s :w<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>/ :BLines<CR>
 nnoremap <leader>f :Rg<SPACE>
@@ -143,12 +149,14 @@ nnoremap <leader><up> :new<CR>
 nnoremap <leader><down> :below new<CR>
 nnoremap <leader>cfp :let @* = expand("%:p")<CR>
 
-nnoremap <C-j> :e <C-R>=expand("%:p:r")<CR>.
+nnoremap <leader>J :e <C-R>=expand("%:p:r")<CR>.
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
 
 nnoremap <leader>+ :resize +5<CR>
 nnoremap <leader>- :resize -5<CR>
-nnoremap <leader>< :vertical resize +5<CR>
-nnoremap <leader>> :vertical resize -5<CR>
+nnoremap > :vertical resize +5<CR>
+nnoremap < :vertical resize -5<CR>
 nnoremap <leader>r :vertical resize 120<CR>
 nnoremap <leader>rs :vertical resize 30<CR>
 nnoremap <leader>rm :vertical resize 80<CR>
