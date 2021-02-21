@@ -134,7 +134,7 @@ nnoremap T gT<CR>
 nnoremap t gt<CR>
 nnoremap <leader>t :tabe<CR>
 nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 80<CR>
+nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 40<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>/ :BLines<CR>
@@ -171,3 +171,5 @@ while i <= 9
     execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
     let i = i + 1
 endwhile
+
+tnoremap <esc><esc> <c-\><c-n>

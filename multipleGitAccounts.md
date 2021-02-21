@@ -1,8 +1,8 @@
 Create SSH keys for all accounts
 ```
 $ cd ~/.ssh
-$ ssh-keygen -t rsa -C "ab@some.com" -f "github-some-username"
-$ ssh-keygen -t rsa -C "ab@another.com" -f "github-another-username"
+$ ssh-keygen -t rsa -C "ab-email@some.com" -f "github-some-username"
+$ ssh-keygen -t rsa -C "ab-email@another.com" -f "github-another-username"
 ```
 
 Add the SSH keys to SSH-agent
@@ -23,27 +23,35 @@ $ vim ~/.ssh/config
 ```
 Add configs to file
 ```
+# basic format example
+# Host myshortname realname.example.com
+#     HostName realname.example.com
+#     IdentityFile ~/.ssh/realname_rsa # private key for realname
+#     User remoteusername
+
 #some-username account
-Host github.com-some-username
+Host github-some-username github.com
     HostName github.com
     User git
     IdentityFile ~/.ssh/github-some-username
+    IdentitiesOnly yes
 
 #another-username account
-Host github.com-another-username
+Host github-another-username github.com
     HostName github.com
     User git
     IdentityFile ~/.ssh/github-another-username
+    IdentitiesOnly yes
 ```
 
 Not yet cloned
 ```
-$ git clone git@github.com-{your-username}:{the-repo-organisation-or-owner-user-name}/{the-repo-name}.git
+$ git clone git@github-{your-username}:{the-repo-organisation-or-owner-user-name}/{the-repo-name}.git
 ```
 
 Updating remote for repositories already cloned
 ```
-$ git remote set-url origin git@github.com-{your-username}:{the-repo-organisation-or-owner-user-name}/{the-repo-name}.git
+$ git remote set-url origin git@github-{your-username}:{the-repo-organisation-or-owner-user-name}/{the-repo-name}.git
 ```
 
 Last, in each repo, set user email and name
