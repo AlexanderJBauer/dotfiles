@@ -61,7 +61,7 @@ Plug 'rakr/vim-one'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " functionality
-Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -78,7 +78,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'junegunn/goyo.vim'
-Plug 'wfxr/minimap.vim'
+Plug 'APZelos/blamer.nvim'
 
 call plug#end()
 
@@ -93,7 +93,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tall'
 
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 
 let g:ale_fixers = {
@@ -110,6 +109,10 @@ let g:ale_fixers['javascript'] = ['eslint']
 let g:ale_fix_on_save = 1
 
 let g:gitgutter_max_signs = -1
+
+let g:blamer_enabled = 1
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_delay = 500
 
 " Goyo
 let g:goyo_width = 120
@@ -140,7 +143,7 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>t :tabe<CR>
 nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>b :wincmd v<bar> :Ex <bar> :vertical resize 40<CR>
+nnoremap <leader>b :CocCommand explorer<CR>
 nnoremap <leader>/ :BLines<CR>
 nnoremap <leader>f :Rg<SPACE>
 nnoremap <leader>F :RG<CR>
@@ -179,7 +182,3 @@ while i <= 9
 endwhile
 
 tnoremap <esc><esc> <c-\><c-n>
-
-" Minimap
-hi MinimapCurrentLine ctermfg=Green guifg=#50FA7B guibg=#32302f
-let g:minimap_highlight = 'MinimapCurrentLine'
