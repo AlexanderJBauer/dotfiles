@@ -5,8 +5,8 @@ osSetupScripts=${BASEDIR}/bashHelpers
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   ${osSetupScripts}/ubuntu.sh # For me, this is always Ubuntu
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  ${osSetupScripts}/mac.sh # Mac OSX
+#elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # ${osSetupScripts}/mac.sh # Mac OSX
 #elif [[ "$OSTYPE" == "cygwin" ]]; then
   # POSIX compatibility layer and Linux environment emulation for Windows
 #elif [[ "$OSTYPE" == "msys" ]]; then
@@ -20,11 +20,11 @@ fi
 # shell config
 # Status code of 1 means command completed successfully but returned falsy.
 # In this case it means the file exists, but does not have the desired string.
-grep -q 'source ~/.personal_shell' .bashrc;
+grep -q 'source ~/.personal_shell' ~/.bashrc;
 if [ $? -eq 1 ]; then
   printf "\nsource ~/.personal_shell" >> ~/.bashrc;
 fi
-grep -q 'source ~/.personal_shell' .zshrc;
+grep -q 'source ~/.personal_shell' ~/.zshrc;
 if [ $? -eq 1 ]; then
   printf "\nsource ~/.personal_shell" >> ~/.zshrc;
 fi

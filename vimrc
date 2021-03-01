@@ -117,6 +117,9 @@ let g:blamer_delay = 500
 " Goyo
 let g:goyo_width = 120
 
+" Coc auto-install
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-explorer']
+
 " Steroid search
 function! RipgrepFzf(query, fullscreen)
   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --hidden -- %s || true'
