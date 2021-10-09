@@ -44,6 +44,22 @@ brew install ffmpeg
 echo brew install pandoc
 brew install pandoc
 
+# fontawesome
+brew install homebrew/cask-fonts/font-fontawesome
+
+# window manager
+brew install koekeishiya/formulae/yabai
+brew install koekeishiya/formulae/skhd
+brew install cmacrae/formulae/spacebar
+
+chmod +x ~/.yabairc
+chmod +x ~/.config/spacebar/spacebarrc
+
+# Disable animations when opening and closing windows.
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+# Accelerated playback when adjusting the window size.
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
 # Installed like regular apps/ via app store
 # Google Chrome
 # VsCode

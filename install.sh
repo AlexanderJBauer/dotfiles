@@ -32,12 +32,20 @@ fi
 # vim
 rm ~/.vimrc
 rm -rf ~/.vim
-rm ~/.personal_shell
 ln -sfn ${BASEDIR}/vimrc ~/.vimrc
+
+# nvim
+rm -rf ~/.config/nvim
+ln -sfn ${BASEDIR}/init.vim ~/.config/nvim/init.vim
+
+# personal shell
+rm ~/.personal_shell
 ln -sfn ${BASEDIR}/personal_shell ~/.personal_shell
 
 # vim plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # git
@@ -45,4 +53,20 @@ git config --global diff.tool vimdiff
 git config --global merge.tool vimdiff
 git config --global difftool.prompt false
 
+# tmux
+rm ~/.tmux.conf
+ln -sfn ${BASEDIR}/tmux.conf ~/.tmux.conf
+
 # ln -sfn ${BASEDIR}/ignore ~/.ignore
+
+# Mac OSX
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  rm ~/.yabairc
+	rm ~/.skhdrc
+	rm ~/.config/spacebar/spacebarrc
+	ln -sfn ${BASEDIR}/mac/yabairc ~/.yabairc
+	ln -sfn ${BASEDIR}/mac/skhdrc ~/.skhdrc
+	ln -sfn ${BASEDIR}/mac/spacebarrc ~/.config/spacebar/spacebarrc
+	chmod +x ~/.yabairc
+	chmod +x ~/.config/spacebar/spacebarrc
+fi

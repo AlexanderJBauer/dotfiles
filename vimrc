@@ -21,6 +21,7 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+set hlsearch
 set backspace=indent,eol,start
 " Timeout on custom mappings
 if !has('nvim') && &ttimeoutlen == -1
@@ -82,7 +83,8 @@ Plug 'APZelos/blamer.nvim'
 
 call plug#end()
 
-colorscheme gruvbox
+colorscheme monokai
+"colorscheme gruvbox
 "colorscheme one
 "colorscheme onehalfdark
 "colorscheme codedark
