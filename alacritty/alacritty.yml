@@ -1,0 +1,15 @@
+import:
+  - ~/.config/alacritty/monokai.yml
+  - ~/.config/alacritty/jetbrainsMono.yml
+
+window:
+  padding:
+    x: 10
+    y: 10
+  decorations: none
+  opacity: 0.7
+  dynamic_title: true
+
+scrolling:
+  history: 10000
+  multiplier: 3

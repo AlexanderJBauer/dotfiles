@@ -2,105 +2,112 @@
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
-echo sudo apt install build-essential
-sudo apt install build-essential
+installPackage() {
+  if [ $(dpkg-query -W -f='${Status}' $1 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+    echo installing package $1
+    sudo apt install $1
+  else
+    echo package $1 already installed
+  fi
+}
 
-echo sudo apt install cmake
-sudo apt install cmake
+addRepo() {
+  grep -h "^deb.*$1" /etc/apt/sources.list.d/* > /dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    echo adding ppa:$1
+    sudo add-apt-repository ppa:$1
+  else
+    echo ppa:$1 already exists
+  fi
+}
 
-echo sudo apt install clang
-sudo apt install clang
+installSnap() {
+  if ! snap info $1 >/dev/null 2>&1; then
+    echo installing snap $1
+    sudo snap install $1
+  else 
+    echo snap $1 already installed
+  fi
+}
 
-echo sudo apt install curl
-sudo apt install curl
-
-echo sudo apt install python3
-sudo apt install python3
-
-echo sudo apt install python-is-python3
-sudo apt install python-is-python3
-
-echo sudo apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common
-sudo apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common
-
-echo sudo apt install gdebi-core
-sudo apt install gdebi-core
-
-echo sudo apt install git
-sudo apt install git
-
-echo sudo apt install vim
-sudo apt install vim
-
-echo sudo apt install ripgrep
-sudo apt install ripgrep
-
-echo sudo apt install fzf
-sudo apt install fzf
+installPackage build-essential
+installPackage cmake
+installPackage clang
+installPackage curl
+installPackage python3
+installPackage python-is-python3
+installPackage python3-pip
+installPackage python3-venv
+installPackage dirmngr
+installPackage gnupg
+installPackage apt-transport-https
+installPackage ca-certificates
+installPackage software-properties-common
+installPackage gdebi-core
+installPackage git
+installPackage vim
+addRepo neovim-ppa/unstable
+installPackage neovim
+installPackage fzf
 
 # Install rustup
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+if ! rustup --version >/dev/null 2>&1; then
+  echo installing rustup
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+else
+  echo rustup is already installed
+fi
 
-echo sudo apt install bat
-sudo sed -i '/\/usr\/.crates2.json/d' /var/lib/dpkg/info/ripgrep.list
-sudo apt install bat
-sudo ln -s batcat /usr/bin/bat
-# sudo dpkg -i latest_release_from_githu_/bat_amd64.deb
+installPackage bat
+sudo ln -sfn batcat /usr/bin/bat
 
-echo sudo apt install nodejs
-sudo apt install nodejs
+# install ripgrep independently to avoid conflicts with bat
+if ! rg --version >/dev/null 2>&1; then
+  echo installing ripgrep;
+  curl -s https://api.github.com/repos/BurntSushi/ripgrep/releases/latest | grep browser_download_url | grep .deb | cut -d '"' -f 4 | xargs wget -qO ~/tmp/rg.deb
+	sudo apt install ~/tmp/rg.deb
+	rm ~/tmp/rg.deb
+else
+  echo ripgrep already installed;
+fi
 
-echo sudo apt install npm
-sudo apt install npm
+installPackage nodejs
+installPackage npm
 
-sudo wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+if [ ! -d ~/.nvm ]; then
+  echo installing nvm
+  sudo wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+else
+  echo nvm is already installed
+fi
 
-echo sudo apt install ffmpeg
-sudo apt install ffmpeg
+installPackage ffmpeg
+installPackage pandoc
+installPackage google-chrome-stable
+installPackage code
+installPackage gnome-tweak-tool
+installPackage i3
+installPackage rofi
+installPackage feh
+installPackage tmux
 
-echo sudo apt install pandoc
-sudo apt install pandoc
-
-echo sudo apt install google-chrome-stable
-sudo apt install google-chrome-stable
-
-echo sudo apt install code
-sudo apt install code
-
-echo sudo apt install gnome-tweak-tool
-sudo apt install gnome-tweak-tool
-
-echo sudo apt install i3
-sudo apt install i3
-
-echo sudo apt install rofi
-sudo apt install rofi
-
-echo sudo apt install tmux
-sudo apt install tmux
-
-# Create repos directory in home
-cd ~
-mkdir -p repos
+installPackage testdisk
 
 # Install Kinto if not present
-KINTO="repos/kinto/"
-if [ ! -d $KINTO ]; then
+if [ ! -d ~/repos/kinto ]; then
   echo "Installing kinto" && $BASEDIR/kinto.sh
 else
-  echo "Kinto is already installed, skipping"
+  echo Kinto is already installed
 fi
 
 # Terminal font FiraCode NF weight=453 13
 
 # mullvad
-echo sudo apt install wireguard-tools
-sudo apt install wireguard-tools
+installPackage wireguard-tools
 # wget --content-disposition https://mullvad.net/download/app/deb/latest
 # sudo gdebi MullvadVPN-XXXX.X_amd64.deb
 
 # vlc media player
-echo sudo snap install vlc
-sudo snap install vlc
+installSnap vlc
 
 # discord
