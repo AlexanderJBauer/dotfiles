@@ -1,0 +1,16 @@
+{
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
+  "eslint.probe": [
+    "javascript",
+    "typescript",
+    "html",
+    "markdown"
+  ],
+  "eslint.run": "onType",
+  "tsserver.maxTsServerMemory": 4096,
+  "coc.preferences.hoverTarget": "preview"
+}

@@ -53,6 +53,8 @@ sudo apt install nodejs
 echo sudo apt install npm
 sudo apt install npm
 
+sudo wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
 echo sudo apt install ffmpeg
 sudo apt install ffmpeg
 
@@ -67,6 +69,15 @@ sudo apt install code
 
 echo sudo apt install gnome-tweak-tool
 sudo apt install gnome-tweak-tool
+
+echo sudo apt install i3
+sudo apt install i3
+
+echo sudo apt install rofi
+sudo apt install rofi
+
+echo sudo apt install tmux
+sudo apt install tmux
 
 # Create repos directory in home
 cd ~

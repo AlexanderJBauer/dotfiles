@@ -1,8 +1,11 @@
 syntax on
 " No error noises when hittng EOL
 set noerrorbells
+set noeb vb t_vb=
+set belloff=all
 " Tab sizing
-set tabstop=2 softtabstop=2
+set tabstop=2
+set softtabstop=2
 " How far to shift lines when shifting
 set shiftwidth=2
 " Whether or not to use spaces for tabs
@@ -14,9 +17,14 @@ set smarttab
 set nu
 " Always show status line
 set laststatus=2
-set nowrap
+"set nowrap
+set wrap
+set breakindent
+set breakindentopt=sbr
+set showbreak=↪>
 set smartcase
 set noswapfile
+set updatetime=350
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
@@ -33,8 +41,9 @@ if !&scrolloff
   set scrolloff=1
 endif
 if !&sidescrolloff
-  set sidescrolloff=5
+  set sidescrolloff=0
 endif
+set sidescroll=1
 " Show as many characters as possible
 set display+=lastline
 " Show following hidden characters as
@@ -79,7 +88,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'junegunn/goyo.vim'
-Plug 'APZelos/blamer.nvim'
+Plug 'ervandew/supertab'
 
 call plug#end()
 
@@ -101,26 +110,26 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_sign_column_always = 1
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
-let g:ale_fixers['javascript'] = ['eslint']
-" Fix files automatically on save
 let g:ale_fix_on_save = 1
 
 let g:gitgutter_max_signs = -1
-
-let g:blamer_enabled = 1
-let g:blamer_show_in_visual_modes = 0
-let g:blamer_delay = 500
 
 " Goyo
 let g:goyo_width = 120
 
 " Coc auto-install
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-explorer']
+let g:coc_global_extensions = [
+\   'coc-json',
+\   'coc-tsserver',
+\   'coc-explorer',
+\   'coc-eslint',
+\   'coc-prettier'
+\ ]
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " Steroid search
 function! RipgrepFzf(query, fullscreen)
@@ -161,6 +170,8 @@ nnoremap <leader><up> :new<CR>
 nnoremap <leader><down> :below new<CR>
 nnoremap <leader>cfp :let @* = expand("%:p")<CR>
 
+nnoremap <silent> <leader>h :call CocActionAsync('doHover')<CR>
+
 nnoremap <leader>J :e <C-R>=expand("%:p:r")<CR>.
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
@@ -169,10 +180,10 @@ nnoremap <leader>+ :resize +5<CR>
 nnoremap <leader>- :resize -5<CR>
 nnoremap > :vertical resize +5<CR>
 nnoremap < :vertical resize -5<CR>
-nnoremap <leader>r :vertical resize 120<CR>
-nnoremap <leader>rs :vertical resize 30<CR>
-nnoremap <leader>rm :vertical resize 80<CR>
-nnoremap <leader>rl :vertical resize 150<CR>
+nnoremap <leader>r :vertical resize 128<CR>
+nnoremap <leader>rs :vertical resize 38<CR>
+nnoremap <leader>rm :vertical resize 88<CR>
+nnoremap <leader>rl :vertical resize 158<CR>
 
 nnoremap <leader>mm :MinimapToggle<CR>
 

@@ -48,6 +48,10 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# coc-settings
+rm ~/.vim/coc-settings.json
+ln -sfn ${BASEDIR}/coc-settings.json ~/.vim/coc-settings.json
+
 # git
 git config --global diff.tool vimdiff
 git config --global merge.tool vimdiff
