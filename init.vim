@@ -86,10 +86,6 @@ EOF
 " theming
 colorscheme monokai
 
-" coq settings
-let g:coq_settings = { 'auto_start': 'shut-up' }
-let g:coq_settings = { 'display.pum.fast_close': v:false }
-
 " key bindings
 nnoremap <SPACE> <Nop>
 let mapleader = " "
@@ -117,16 +113,19 @@ nnoremap t gt<CR>
 " search
 nnoremap <leader>/ :BLines<CR>
 nnoremap <leader>f :Rg<SPACE>
-nnoremap <leader>F :RG<CR>
-nnoremap <leader>p :Files<CR>
+nnoremap <leader>p :Telescope find_files<CR>
 
 " config
 nnoremap <leader>cc :vsplit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>sc :source ~/.config/nvim/init.vim<CR>
 
 " ability to exit terminal insert mode using escape
-tnoremap <esc><esc> <c-\><c-n>
+" tnoremap <esc><esc> <c-\><c-n>
 
 " copy path of current file
 nnoremap <leader>cfp :let @* = expand("%:p")<CR>
 
+" coq
+let g:coq_settings = { 'display.pum.fast_close': v:false }
+lua require('coq')
+COQnow -s
