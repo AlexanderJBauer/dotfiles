@@ -1,9 +1,25 @@
 # starship
 # eval "$(starship init zsh)"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*"'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-bind -x '"\C-p": nvim $(fzf);'
+if [ $(echo $SHELL | grep -c zsh) = 1 ]; then 
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+   source /usr/share/doc/fzf/examples/key-bindings.zsh
+   source /usr/share/doc/fzf/examples/completion.zsh
+  fi
+fi
+
+if [ $(echo $SHELL | grep -c bash) = 1 ]; then
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    source /usr/share/doc/fzf/examples/key-bindings.bash
+    source /usr/share/doc/fzf/examples/completion.bash
+  fi
+
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*"'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    bind -x '"\C-p": nvim $(fzf);'
+  fi
+fi
 
 export BAT_THEME="Monokai Extended Origin"

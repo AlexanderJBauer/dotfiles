@@ -90,8 +90,10 @@ installPackage i3
 installPackage rofi
 installPackage feh
 installPackage tmux
+installPackage zsh
 
 installPackage testdisk
+
 
 # Install Kinto if not present
 if [ ! -d ~/repos/kinto ]; then
@@ -107,7 +109,5 @@ installPackage wireguard-tools
 # wget --content-disposition https://mullvad.net/download/app/deb/latest
 # sudo gdebi MullvadVPN-XXXX.X_amd64.deb
 
-# vlc media player
 installSnap vlc
-
-# discord
+installSnap discord

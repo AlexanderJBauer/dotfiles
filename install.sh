@@ -59,6 +59,10 @@ ln -sfn ${BASEDIR}/alacritty ~/.config/alacritty
 rm ~/.personal_shell
 ln -sfn ${BASEDIR}/personal_shell ~/.personal_shell
 
+# ripgrep global ignore
+rm ~/.gitignore
+ln -sfn ${BASEDIR}/rgignore ~/.gitignore
+
 # shell config
 # Status code of 1 means command completed successfully but returned falsy.
 # In this case it means the file exists, but does not have the desired string.
