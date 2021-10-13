@@ -46,6 +46,7 @@ ln -sfn ${BASEDIR}/coc-settings.json ~/.vim/coc-settings.json
 git config --global diff.tool vimdiff
 git config --global merge.tool vimdiff
 git config --global difftool.prompt false
+git config --global core.editor nvim
 
 # tmux
 rm ~/.tmux.conf
@@ -78,14 +79,14 @@ fi
 # ln -sfn ${BASEDIR}/ignore ~/.ignore
 
 # install fonts
-if [ ! -d ~/repos/nerd-fonts ]; then
-  echo installing nerd-fonts
-  git clone https://github.com/ryanoasis/nerd-fonts
-  cd ~/repos/nerd-fonts
-  ./install.sh
-else
-  echo nerd-fonts already installed
-fi
+# if [ ! -d ~/repos/nerd-fonts ]; then
+#   echo installing nerd-fonts
+#   git clone https://github.com/ryanoasis/nerd-fonts
+#   cd ~/repos/nerd-fonts
+#   ./install.sh
+# else
+#   echo nerd-fonts already installed
+# fi
 
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -101,6 +102,4 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sfn ${BASEDIR}/mac/yabairc ~/.yabairc
   ln -sfn ${BASEDIR}/mac/skhdrc ~/.skhdrc
   ln -sfn ${BASEDIR}/mac/spacebarrc ~/.config/spacebar/spacebarrc
-  chmod +x ~/.yabairc
-  chmod +x ~/.config/spacebar/spacebarrc
 fi
